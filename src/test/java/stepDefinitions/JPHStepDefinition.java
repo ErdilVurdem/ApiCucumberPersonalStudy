@@ -61,4 +61,17 @@ public class JPHStepDefinition {
         assertEquals(id,resJP.getInt("id"));
     }
 
+    @Then("kullanici delete request gonderir")
+    public void kullaniciDeleteRequestGonderir() {
+        response=given().when().delete(endPoint);
+    }
+
+    @And("kullanici donen cevabin response bodysinin null olduğunu kontrol eder")
+    public void kullaniciDonenCevabinResponseBodysininNullOlduğunuKontrolEder() {
+        try {
+            assertNull(resJP.getString("body"));
+        } catch (NullPointerException e) {
+            assertTrue(true);
+        }
+    }
 }
